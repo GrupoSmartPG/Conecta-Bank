@@ -1,11 +1,15 @@
 import express from "express"
 const app = express();
 app.use(express.json());
+import connectDB from "./config/db.js";
+
+connectDB()
 
 import mainRouter from "./routes/router.js";
 app.use('/', mainRouter)
 
-//Dados padrões servidor
+
+
 app.get("/",(req,res)=>{
     res.status(200).send("Servidor ok!")
 })
