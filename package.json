@@ -1,0 +1,19 @@
+{
+  "name": "conecta-bank",
+  "version": "1.0.0",
+  "description": "Código para hackaton ACIPG",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
