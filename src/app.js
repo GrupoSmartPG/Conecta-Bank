@@ -2,7 +2,7 @@ import express from "express"
 const app = express();
 app.use(express.json());
 
-import mainRouter from "./src/routes/router.js";
+import mainRouter from "./routes/router.js";
 app.use('/', mainRouter)
 
 //Dados padrões servidor
