@@ -4,4 +4,7 @@ const mainRouter = express.Router();
 import usuarioRouter from "./usuarioRouter.js";
 mainRouter.use('/usuario', usuarioRouter)
 
+import carteiraRouter from "./carteiraRouter.js"
+mainRouter.use('/carteira', carteiraRouter)
+
 export default mainRouter;
