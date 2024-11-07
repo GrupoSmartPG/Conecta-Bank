@@ -74,7 +74,7 @@ export const sacarFundos = async (req, res) => {
       res.status(500).json({ message: "Erro no servidor", error });
     }
   };
-    
+
 export const fecharConta = async (req, res) => {
     const { id } = req.params;
   
