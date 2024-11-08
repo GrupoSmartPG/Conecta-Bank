@@ -4,6 +4,9 @@ const mainRouter = express.Router();
 import usuarioRouter from "./usuarioRouter.js";
 mainRouter.use('/usuario', usuarioRouter)
 
+import authRouter from "./authRouter.js"
+mainRouter.use("/auth", authRouter)
+
 import convertRouter from "./convertRouter.js";
 mainRouter.use('/convert', convertRouter);
 
