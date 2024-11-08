@@ -2,7 +2,7 @@ import { Schema, model} from 'mongoose'
 
 const dataAtual = new Date();
 
-const carteiraSchema = new db.Schema({ 
+const carteiraSchema = new Schema({ 
     usrId: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
