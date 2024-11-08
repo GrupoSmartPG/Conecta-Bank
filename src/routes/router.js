@@ -8,9 +8,12 @@ import convertRouter from "./convertRouter.js";
 mainRouter.use('/convert', convertRouter);
 
 import carteiraRouter from "./carteiraRouter.js"
-mainRouter.use('/carteira', carteiraRouter)
+mainRouter.use('/carteira', carteiraRouter);
 
 import transacaoRouter from "./transacoesRouter.js";
-mainRouter.use('/transacao', transacaoRouter)
+mainRouter.use('/transacao', transacaoRouter);
+
+import depositoRouter from "./depositoRouter.js";
+mainRouter.use('/deposito', depositoRouter);
 
 export default mainRouter;
