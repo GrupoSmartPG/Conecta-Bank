@@ -2,8 +2,8 @@ import express from 'express';
 import { conversaoMoeda } from '../middlewares/conversaoMoeda';
 import { createConversion } from '../controllers/convertController';
 
-const router = express.Router();
+const convertRouter = express.Router();
 
-router.post('/convert', conversaoMoeda, createConversion);
+convertRouter.post('/convert', conversaoMoeda, createConversion);
 
-export default router;
+export default convertRouter;
