@@ -1,6 +1,6 @@
 import express from 'express';
-import { conversaoMoeda } from '../middlewares/conversaoMoeda';
-import { createConversion } from '../controllers/convertController';
+import { conversaoMoeda } from '../middlewares/conversaoMoeda.js';
+import { createConversion } from '../controllers/convertController.js';
 
 const convertRouter = express.Router();
 
