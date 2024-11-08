@@ -19,7 +19,7 @@ const transacoesSchema = new Schema({
     },
     tipoTransacao: {
         type: String,
-        enum: ['DEPOSITO', 'TRANSFERENCIA', 'RETIRADA'],
+        enum: ['DEPOSITO', 'TRANSFERENCIA'],
         required: true
     },
     statusTransacao: {

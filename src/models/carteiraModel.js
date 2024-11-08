@@ -9,9 +9,12 @@ const carteiraSchema = new Schema({
         required: true
     },
     saldo: {
-        type: Number,
+        type: Schema.Types.Decimal128,
         required: true,
-        default: 0
+        default: 0,
+        set: (val) => {
+            return parseFloat(val).toFixed(3);
+        }
     },
     tipoMoeda: {
         type: String,
@@ -23,5 +26,9 @@ const carteiraSchema = new Schema({
     }
 
 });
+
+carteiraSchema.methods.getFormattedSaldo = function() {
+    return parseFloat(this.saldo.toString()).toFixed(3); //Pode dar erro aqui
+}
 
 export default model('Carteira', carteiraSchema);
