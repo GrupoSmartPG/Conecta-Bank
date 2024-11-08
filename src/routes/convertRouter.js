@@ -1,12 +1,9 @@
 import express from 'express';
-import { createConversion, getConversion } from '../controllers/convertController.js';
+import { conversaoMoeda } from '../middlewares/conversaoMoeda';
+import { createConversion } from '../controllers/convertController';
 
 const router = express.Router();
 
-// Rota para criar uma nova conversão de moeda
-router.post('/convert', createConversion);
-
-// Rota para obter uma conversão específica pelo ID
-router.get('/convert/:id', getConversion);
+router.post('/convert', conversaoMoeda, createConversion);
 
 export default router;

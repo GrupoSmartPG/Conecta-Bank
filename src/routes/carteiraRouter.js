@@ -8,7 +8,7 @@ import {
 
 const carteiraRouter = Router();
 
-carteiraRouter.post('/nova', store);
+carteiraRouter.post('/nova', converter, store);
 carteiraRouter.get('/carteiras', index);
 carteiraRouter.put('/:id', update);
 carteiraRouter.delete('/:id', destroy);
