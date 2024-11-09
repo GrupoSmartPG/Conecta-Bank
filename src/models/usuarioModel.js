@@ -16,7 +16,7 @@ const usuarioSchema = new Schema({
   },
   celular: {
     type: String,
-    required: true,
+    required: false,
   },
   saldo: {
     type: Number,
