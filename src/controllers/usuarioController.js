@@ -1,8 +1,4 @@
 import Usuario from '../models/usuarioModel.js'
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import qrcode from "qrcode"
-import speakeasy from 'speakeasy'
 import { configDotenv } from 'dotenv';
 configDotenv()
 
@@ -57,6 +53,6 @@ export const fecharConta = async (req, res) => {
   
       res.status(200).json({ message: "Conta encerrada com sucesso" });
     } catch (error) {
-      res.status(500).json({ message: "Erro no servidor", error });
+      res.status(500).json({ message: "Erro no servidor", error });x
     }
   };
