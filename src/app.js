@@ -1,16 +1,24 @@
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import connectDB from "./config/db.js";
 import mainRouter from "./routes/router.js";
 
 // Criação do servidor Express
 const app = express();
 
-// Configuração do CORS (Permitir qualquer origem)
+// Configuração do CORS
 app.use(cors({
-  origin: true, // Permitir todas as origens
+  origin: (origin, callback) => {
+    // Permitir todas as origens
+    callback(null, true);
+  },
   credentials: true, // Permitir envio de cookies e credenciais
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
 }));
+
+// Middleware para lidar com pré-requisições
+app.options('*', cors()); // Lidar com preflight requests
 
 // Middleware para interpretar JSON
 app.use(express.json());
@@ -24,7 +32,7 @@ connectDB()
   });
 
 // Roteador principal
-app.use('/', mainRouter);
+app.use("/", mainRouter);
 
 // Rota para verificar se o servidor está funcionando
 app.get("/", (req, res) => {
