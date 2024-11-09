@@ -19,4 +19,7 @@ mainRouter.use('/transacao', transacaoRouter);
 import depositoRouter from "./depositoRouter.js";
 mainRouter.use('/deposito', depositoRouter);
 
+import catalogoRouter from "./catalogoRouter.js";
+mainRouter.use('/catalogo', catalogoRouter);
+
 export default mainRouter;
