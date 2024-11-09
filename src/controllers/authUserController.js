@@ -5,7 +5,7 @@ import qrcode from "qrcode"
 import speakeasy from 'speakeasy'
 import { configDotenv } from 'dotenv';
 configDotenv()
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = 'KKSDASDAASCS212adkjsld'
 
 export const register = async (req, res) => {
     const { nome, email, senha } = req.body;

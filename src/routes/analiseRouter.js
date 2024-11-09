@@ -1,7 +1,8 @@
+import express from 'express';
 import { analisarGastos } from "../controllers/analiseController.js";
 
 const analiseRouter = express.Router();
 
-Router.get('/analise/:usrId', analisarGastos);
+analiseRouter.get('/analisador/:usrId', analisarGastos);
 
 export default analiseRouter;
