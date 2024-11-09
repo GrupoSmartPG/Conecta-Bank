@@ -1,12 +1,12 @@
-import Usuario from '../models/usuarioModel.js';
+import Carteira from '../models/carteiraModel.js';
 import Transacoes from '../models/transacoesModel.js';
 
 export const transferir = async (req, res) => {
   const { deCarteira, carteiraPara, valor, tipoMoeda, detalhes } = req.body;
 
   try {
-    const remetente = await Usuario.findById(deCarteira);
-    const destinatario = await Usuario.findById(carteiraPara);
+    const remetente = await Carteira.findById(deCarteira);
+    const destinatario = await Carteira.findById(carteiraPara);
 
     if (!remetente || !destinatario) {
       return res.status(404).json({ message: "Remetente ou destinatário não encontrado" });

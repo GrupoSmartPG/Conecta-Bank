@@ -10,7 +10,8 @@ const carteiraSchema = new Schema({
     },
     saldo: {
         type: Number,
-        required: false
+        required: true,
+        default: 0
     },
     tipoMoeda: {
         type: String,

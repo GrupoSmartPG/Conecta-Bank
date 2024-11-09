@@ -15,7 +15,7 @@ const transacoesSchema = new Schema({
     },
     montante: {
         type: Number,
-        required: true
+        required: false
     },
     tipoTransacao: {
         type: String,

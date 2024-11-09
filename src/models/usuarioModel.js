@@ -14,10 +14,6 @@ const usuarioSchema = new Schema ({
         type: String,
         required: true
     },
-    saldo: {
-        type: Number,
-        default: 0
-    },
     transacoes: [{ 
         type: Schema.Types.ObjectId, 
         ref: "Transacoes" 
