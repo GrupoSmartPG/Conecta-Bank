@@ -1,24 +1,14 @@
 import express from "express";
-import cors from "cors";
+import cors from 'cors';
 import connectDB from "./config/db.js";
 import mainRouter from "./routes/router.js";
 
 // Criação do servidor Express
 const app = express();
 
-// Configuração do CORS
-const allowedOrigins = [
-  'https://conecta-bank.flutterflow.app'
-];
-
+// Configuração do CORS (Permitir qualquer origem)
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true, // Permitir todas as origens
   credentials: true, // Permitir envio de cookies e credenciais
 }));
 
@@ -26,7 +16,12 @@ app.use(cors({
 app.use(express.json());
 
 // Conexão com o banco de dados
-connectDB();
+connectDB()
+  .then(() => console.log("Conectado ao banco de dados"))
+  .catch((err) => {
+    console.error("Erro ao conectar ao banco de dados:", err.message);
+    process.exit(1); // Finaliza o processo em caso de erro crítico
+  });
 
 // Roteador principal
 app.use('/', mainRouter);
