@@ -14,7 +14,8 @@ const carteiraSchema = new Schema({
     },
     tipoMoeda: {
         type: String,
-        required: true
+        required: true,
+        default:"R$"
     },
     carteiraCriada: {
         type: Date,
