@@ -1,7 +1,28 @@
 import express from "express";
-const app = express();
-app.use(express.json());
+
 import connectDB from "./config/db.js";
+import cors from 'cors';
+const allowedOrigins = [
+    
+    'https://conecta-bank.flutterflow.app'
+  ];
+  app.use(cors({
+    origin: function (origin, callback) {
+  
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Permitir o envio de cookies e credenciais
+  }));
+  
+
+  const app = express();
+  app.use(express.json());
+
+
 
 connectDB()
 
