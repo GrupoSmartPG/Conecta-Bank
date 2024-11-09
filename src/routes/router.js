@@ -22,4 +22,7 @@ mainRouter.use('/deposito', depositoRouter);
 import catalogoRouter from "./catalogoRouter.js";
 mainRouter.use('/catalogo', catalogoRouter);
 
+import analiseRouter from "./analiseRouter.js";
+mainRouter.use('/analise', analiseRouter);
+
 export default mainRouter;
