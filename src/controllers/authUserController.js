@@ -1,4 +1,3 @@
-
 import Usuario from '../models/usuarioModel.js';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -15,14 +14,6 @@ const SECRET_KEY = process.env.SECRET_KEY;
 export const register = async (req, res) => {
   const schema = Joi.object({
     nome: Joi.string().min(3).max(50).required(),
-    celular: Joi.string()
-      .pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/) // Aceita "(11) 98765-4321", "11987654321", ou "11 98765 4321"
-      .required()
-      .messages({
-        "string.pattern.base": "O celular deve ser válido. Ex.: '(11) 98765-4321' ou '11987654321'.",
-        "string.empty": "O celular é obrigatório.",
-        "any.required": "O celular é obrigatório."
-      }),
     email: Joi.string().email().required(),
     senha: Joi.string()
       .min(8)
@@ -40,7 +31,7 @@ export const register = async (req, res) => {
     return res.status(422).json({ errors: error.details.map((detail) => detail.message) });
   }
 
-  const { nome, celular, email, senha } = req.body;
+  const { nome, email, senha } = req.body;
 
   try {
     const userExists = await Usuario.findOne({ email });
@@ -53,7 +44,6 @@ export const register = async (req, res) => {
 
     const user = new Usuario({
       nome,
-      celular: celular.replace(/\D/g, ''), // Remove todos os caracteres não numéricos antes de salvar
       email,
       senha: passwordHash,
     });
@@ -66,7 +56,6 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Erro no servidor." });
   }
 };
-
 
 export const login = async (req, res) => {
     const { email, senha } = req.body;
@@ -123,7 +112,8 @@ export const login = async (req, res) => {
       return res.status(500).json({ message: "Erro no servidor." });
     }
   };
-  export const verify2FA = async (req, res) => {
+
+export const verify2FA = async (req, res) => {
     const { email, token } = req.body;
   
     // Verifica se os campos obrigatórios foram fornecidos
@@ -173,4 +163,3 @@ export const login = async (req, res) => {
       res.status(500).json({ message: "Erro no servidor." });
     }
   };
-  
