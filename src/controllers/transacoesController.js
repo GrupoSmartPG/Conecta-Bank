@@ -52,3 +52,34 @@ export const transferir = async (req, res) => {
     res.status(500).json({ message: "Erro ao transferir", error: err.message });
   }
 };
+
+
+
+
+export const listarTransacoes = async (req, res) => {
+  try {
+    // Obtemos os parâmetros de paginação da query string
+    const page = parseInt(req.query.page) || 1; // Página atual (padrão: 1)
+    const limit = parseInt(req.query.limit) || 10; // Limite de itens por página (padrão: 10)
+    const skip = (page - 1) * limit;
+
+    // Busca as transações com paginação
+    const transacoes = await Transacoes.find()
+      .populate("deCarteira carteiraPara", "tipoMoeda saldo") // Popula informações das carteiras
+      .skip(skip) // Pula os registros anteriores
+      .limit(limit); // Limita a quantidade de registros retornados
+
+    // Conta o total de transações no banco
+    const total = await Transacoes.countDocuments();
+
+    res.status(200).json({
+      total, // Total de transações
+      page, // Página atual
+      pages: Math.ceil(total / limit), // Total de páginas
+      transacoes, // Transações retornadas
+    });
+  } catch (err) {
+    console.error("Erro ao listar transações:", err.message);
+    res.status(500).json({ message: "Erro ao listar transações.", error: err.message });
+  }
+};
