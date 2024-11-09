@@ -1,61 +1,22 @@
-version: '3.8'
+# Dockerfile do backend
 
-services:
-  backend:
-    build: ./src
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./src:/app
-      - /app/node_modules
-    env_file:
-      - ./.env
-    environment:
-      - NODE_ENV=production
-    networks:
-      - app-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    restart: unless-stopped
+# Usar a imagem oficial do Node.js
+FROM node:18
 
-  frontend:
-    build:
-      context: ./Interface/vite-project
-      dockerfile: Dockerfile
-    volumes:
-      - ./Interface/vite-project/dist:/app/dist 
-    networks:
-      - app-network
-    depends_on:
-      - backend
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5173"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    restart: unless-stopped
+# Diretório de trabalho no contêiner
+WORKDIR /app
 
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Interface/vite-project/nginx/default.conf:/etc/nginx/conf.d/default.conf  
-      - ./ssl/nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt             
-      - ./ssl/nginx-selfsigned.key:/etc/nginx/ssl/nginx-selfsigned.key
-      - ./ssl/dhparam.pem:/etc/nginx/ssl/dhparam.pem
-      - ./Interface/vite-project/dist:/usr/share/nginx/html 
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - app-network
-    restart: unless-stopped
+# Copiar arquivos de dependências
+COPY package*.json ./
 
-networks:
-  app-network:
-    driver: bridge
+# Instalar dependências
+RUN npm install
+
+# Copiar o restante do código
+COPY ./src ./
+
+# Expor a porta usada pelo backend
+EXPOSE 3000
+
+# Comando para rodar o backend
+CMD ["node", "app.js"]
