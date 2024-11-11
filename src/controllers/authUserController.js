@@ -85,7 +85,7 @@ export const login = async (req, res) => {
     user.twoFactorSecret = secret.base32; // Salva o segredo no banco de dados
     await user.save();
 
-    // Cria a URL OTPAuth
+    // Cria a URL otpauthUrl
     const otpauthUrl = speakeasy.otpauthURL({
       secret: secret.base32,
       label: `Conecta:${user.email}`,
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
       encoding: "base32",
     });
 
-    // Gera o QR Code e inclui o segredo na resposta
+    // gera o QR Code e inclui o secret na resposta
     qrcode.toDataURL(otpauthUrl, (err, dataUrl) => {
       if (err) {
         console.error("Erro ao gerar QR Code:", err);
@@ -102,8 +102,8 @@ export const login = async (req, res) => {
 
       return res.status(200).json({
         message: "2FA obrigatório. Configure no seu aplicativo.",
-        qrCodeUrl: dataUrl, // Base64 do QR Code
-        secret: secret.base32, // Segredo para configuração manual
+        qrCodeUrl: dataUrl, // 64Base do QR Code
+        secret: secret.base32, // secret para configuração manual do app autenticador
         setupInstructions: `Adicione manualmente este segredo (${secret.base32}) no seu aplicativo de autenticação se você não puder escanear o QR Code.`,
         setupRequired: true,
       });
@@ -118,7 +118,7 @@ export const login = async (req, res) => {
 export const verify2FA = async (req, res) => {
   const { email, token } = req.body;
 
-  // Verifica se os campos obrigatórios foram fornecidos
+ 
   if (!email || !token) {
     return res.status(400).json({ message: "E-mail e token são obrigatórios." });
   }
@@ -151,14 +151,14 @@ export const verify2FA = async (req, res) => {
       await user.save();
     }
 
-    // Gera um token JWT para autenticação do usuário
+    // Gera um token  para autenticação do usuário
     const jwtToken = jwt.sign(
       { id: user._id, email: user.email, nome: user.nome },
-      process.env.SECRET_KEY, // Certifique-se de ter configurado o SECRET_KEY no .env
+      process.env.SECRET_KEY, 
       { expiresIn: "1h" }
     );
 
-    // Retorna sucesso com o token JWT
+    // Retorna sucesso com o token
     res.status(200).json({ message: "Login bem-sucedido com 2FA!", token: jwtToken });
   } catch (err) {
     console.error("Erro ao verificar 2FA:", err);
