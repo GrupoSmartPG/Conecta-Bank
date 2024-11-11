@@ -2,9 +2,9 @@ import { obterTransacoesPorUsuario, classificarPorCategoria } from "../middlewar
 import Carteira from "../models/carteiraModel.js";
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = process.env.SECRET_KEY; // Certifique-se de configurar corretamente no .env
+const SECRET_KEY = process.env.SECRET_KEY;
 
-// Função para extrair e verificar o token JWT
+// Função para extrair e verificar o token 
 const getUserFromToken = async (authHeader) => {
   if (!authHeader) {
     throw new Error("Token não fornecido.");
@@ -22,19 +22,19 @@ const getUserFromToken = async (authHeader) => {
 // Função para análise de gastos
 export const analisarGastos = async (req, res) => {
   try {
-    // Obtemos o ID do usuário a partir do token JWT
+    // Obtemos o ID do usuário a partir do token 
     const usuarioId = await getUserFromToken(req.headers.authorization);
 
-    // Obtém as carteiras relacionadas ao usuário
+    // pega as carteiras relacionadas ao usuário
     const carteiras = await Carteira.find({ usrId: usuarioId });
     if (!carteiras || carteiras.length === 0) {
       return res.status(404).json({ error: "Nenhuma carteira encontrada para o usuário." });
     }
 
-    // Obtém os IDs das carteiras
+    // pega os IDs das carteiras
     const idsCarteiras = carteiras.map((carteira) => carteira._id);
 
-    // Obtém as transações relacionadas às carteiras do usuário
+    // obtem as transações relacionadas às carteiras do usuário
     const transacoes = await obterTransacoesPorUsuario(idsCarteiras);
 
     // Classifica os gastos por categoria
