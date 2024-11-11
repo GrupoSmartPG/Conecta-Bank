@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import Carteira from "../models/carteiraModel.js";
 import Usuario from "../models/usuarioModel.js";
 
-const SECRET_KEY = process.env.SECRET_KEY; // Certifique-se de que SECRET_KEY está configurado no .env
+const SECRET_KEY = process.env.SECRET_KEY; 
 
 // Função para extrair e verificar o token JWT
 const getUserFromToken = async (authHeader) => {
