@@ -42,4 +42,4 @@ O **Conecta Bank** é uma plataforma bancária inovadora que incentiva o uso da 
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/smart-bank.git
+   git clone https://github.com/GrupoSmartPG/Conecta-Bank.git
