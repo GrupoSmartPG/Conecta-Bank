@@ -1,35 +1,45 @@
-# 🏦 Smart Bank - O Banco Digital da Moeda Local
+# 💰 Conecta Bank
 
+**O futuro das finanças digitais com foco na moeda local!**
 
-## Descrição
+---
 
+## 📖 O que é o Conecta Bank?
 
-O **Smart Bank** é uma plataforma bancária digital que promove o uso da moeda local da sua cidade, oferecendo um novo jeito de gerenciar e investir seu dinheiro. O software foi projetado para facilitar a conversão de moedas, realizar investimentos locais e gerenciar múltiplas carteiras com diferentes tipos de moeda, tudo com foco em segurança.
+O **Conecta Bank** é uma plataforma bancária inovadora que incentiva o uso da moeda local da sua cidade. Com funcionalidades como conversão de moedas, investimentos e gerenciamento de carteiras, ele é ideal para quem busca simplicidade e segurança.
 
+---
 
-## Funcionalidades
+## 🚀 Principais Funcionalidades
 
+- **Conversão de Moeda**: Troque moedas estrangeiras pela moeda local da sua cidade de forma prática.
+- **Investimentos Locais**: Invista diretamente na economia da sua região utilizando a moeda local.
+- **CRUD de Carteiras**: Crie e gerencie múltiplas carteiras com diferentes tipos de moeda.
+- **Segurança Avançada**:
+  - **Autenticação em Dois Fatores (2FA)**: Garanta proteção extra à sua conta.
+  - **Criptografia Completa**: Todas as transações e dados são protegidos.
 
-- **Conversão de Moeda**: Realize a conversão entre moedas estrangeiras e a moeda local da sua cidade de forma rápida e precisa.
-- **Investimentos Locais**: Invista seu dinheiro utilizando a moeda local, aproveitando as oportunidades de crescimento econômico da sua cidade.
-- **CRUD de Carteiras**: Crie, gerencie e exclua múltiplas carteiras, cada uma podendo ter diferentes tipos de moeda e valores.
-- **Segurança Reforçada**:
-  - Autenticação em Dois Fatores (2FA): Proteja sua conta com uma camada extra de segurança.
-  - Criptografia Avançada: Todas as transações e dados são protegidos com criptografia de ponta a ponta.
+---
 
+## 🛠️ Como Usar?
 
-## Como Funciona
+1. **Crie sua conta**: Configure o 2FA e proteja seus dados.
+2. **Adicione Carteiras**: Gerencie suas moedas de forma personalizada.
+3. **Realize Transações**: Converta moedas ou invista na moeda local com facilidade.
 
+---
 
-1. **Cadastro e Configuração de Segurança**: Crie sua conta e configure o 2FA para maior segurança.
-2. **Gerenciamento de Carteiras**: Utilize o CRUD para criar e gerenciar carteiras com diferentes moedas.
-3. **Conversão e Investimentos**: Converta moedas e realize investimentos utilizando a moeda local.
+## 💻 Tecnologias Utilizadas
 
+- **Backend**: Node.js  
+- **Frontend**: Vue.js  
+- **Banco de Dados**: MongoDB  
+- **Segurança**: Implementação de autenticação 2FA e criptografia avançada  
 
-## Tecnologias Utilizadas
+---
 
+## 🔧 Como Configurar?
 
-- Linguagem de Programação: [ Java Script ]
-- Banco de Dados: [ MongoBD ]
-- Interface: [ Flutter Flow ]
-- Segurança: Autenticação em dois fatores (2FA), criptografia
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/smart-bank.git
